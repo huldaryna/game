@@ -16,30 +16,54 @@
 	<script>
 		var canvas = document.getElementById("canvas");
 		var ctx = canvas.getContext("2d");
-		var x = canvas.width / 2;
-		var y = canvas.height - 30;
-		var dx = 2;
-		var dy = -2;
+		var x = 50;
+		var y = 450;
+		var dx = 0;
+		var dy = -5;
+		var sides=false;
+		var color=[ "#42f4dc", "#428cf4","#7d42f4","#c542f4","#f442d7","#f44242"];
+		var color_index=0;
 		function draw() {
-			ctx.clearRect(0,0,canvas.width,canvas.height)
+			
 			ctx.beginPath();
-		    ctx.arc(x,y,20,0,Math.PI*2,false);
-		    ctx.fillStyle="Black";
+		    ctx.arc(x,y,10,0,Math.PI*2,false);
+		    ctx.fillStyle=color[color_index]
 		    ctx.fill();
 		    ctx.closePath();
 		    x+=dx;
 		    y+=dy;
-			
+		    if(y==50){ 
+		    	sides=true;
+		    	dx=5;
+		    	dy=0;
+		    	
+		    	 }
+			if(x==450){
+				dx=0;
+				dy=5;
+				
+			}
+			if(y==450){
+				dy=0;
+				dx=-5;
+				
+			}
+			if(y == 450 && x == 50 && sides == true ){
+				dx=0;
+				dy=-5
+				sides=false;
+				
+			}
+			if(color_index>color.length){
+				color_index=0;
+			}
 		}
-
 		setInterval(draw,10)
-
-		
-
+			
 		
 		
 		
-
+		
 	</script>
 
 </body>
